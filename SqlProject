@@ -6,7 +6,8 @@ Skills Used: Windows Functions, Aggregate Functions, Creating Views
 SELECT * From sample.exams
 
  --Getting out the female math scores in descending order
-SELECT gender, math_score 
+
+SELECT DISTINCT gender, math_score 
 FROM sample.exams 
 WHERE gender="female"  ORDER BY math_score DESC
 
@@ -16,8 +17,18 @@ WHERE gender="female"  ORDER BY math_score DESC
  FROM sample.exams 
   
   --Lowest score in math
- SELECT gender, min(math_score) AS "max_math_score"
+ SELECT gender, min(math_score) AS "loowest_math_score"
  FROM sample.exams 
   
+--Students with test preparation course completed and their maths score
+ 
+ SELECT gender, test_preparation_course,math_score
+ FROM sample.exams
+ WHERE test_preparation_course="completed" GROUP BY gender
 
+--All that their reading score is above average and their corresponding math score
+
+SELECT gender, reading_score, math_score
+ FROM sample.exams
+ WHERE COUNT (reading_score > 50)
  
